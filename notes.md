@@ -19,12 +19,6 @@ A square matrix A can be decomposed into two square matrices L and U such that A
 
 For A = \begin{bmatrix}   a_{11} & a_{12} & a_{13} \\   a_{21} & a_{22} & a_{23} \\   a_{31} & a_{32} & a_{33}  \end{bmatrix}, we have L = \begin{bmatrix}   1 & 0 & 0 \\   l_{21} & 1 & 0 \\   l_{31} & l_{32} & 1  \end{bmatrix} and U = \begin{bmatrix}   u_{11} & u_{12} & u_{13} \\   0 & u_{22} & u_{23} \\   0 & 0 & u_{33}  \end{bmatrix} ; such that A = L U.
 
-a11= u11.L11, a12=u12.L11
-let L11=1, a11=u11, a12= u12;
-aij:
-{i=j: aij = aii= Li1Un+Li2+...+Lin.uni = ∑_(n=1)^j▒〖Lin.unj〗
-![](https://i.imgur.com/a1MXXGT.jpg)
-
 
 http://www.stat.nctu.edu.tw/misg/SUmmer_Course/C_language/Ch06/LUdecomposition.htm
 
@@ -84,40 +78,6 @@ The Cholesky decomposition is unique when A is positive definite; there is only 
 The converse holds trivially: if A can be written as LL* for some invertible L, lower triangular or otherwise, then A is Hermitian and positive definite.
 
 In matlab we use chol function to compute cholesky factorisation.
-
-https://en.wikipedia.org/wiki/Cholesky_decomposition
-![](https://i.imgur.com/nNXUCcd.png)
-
-code for LdL'
-clear all ;
-clc;
-close all;
-A = [2,1,1,4;1,3,2,5;1,2,9,8;4,5,8,1]
-n = size(A,1)
-L=zeros(n,n);
-for j=1:n,
-  if (j > 1),
-    v(1:j-1)=L(j,1:j-1).*d(1:j-1);
-    v(j)=A(j,j)-L(j,1:j-1)*v(1:j-1)';
-    d(j)=v(j);
-    if (j < n),
-      L(j+1:n,j)=(A(j+1:n,j)-L(j+1:n,1:j-1)*v(1:j-1)')/v(j);
-    end;
-  else
-    v(1)=A(1,1);
-    d(1)=v(1);
-    L(2:n,1)=A(2:n,1)/v(1);    
-  end;
-end;
-%
-%  Put d into a matrix.
-%
-D=diag(d);
-%
-%  Put ones on the diagonal of L.
-%
-L=L+eye(n);
-
 
 
 ### 14 March
@@ -197,14 +157,12 @@ To know its functioning
 
 
 ### 11 April
-![](https://i.imgur.com/Rf4Zh1p.png)
 
 ### 18 April
 midterm
 
 ### 25 April
 Time marching
-LECTURE 10 
 Forward Euler Method
 
 ### 2 May
